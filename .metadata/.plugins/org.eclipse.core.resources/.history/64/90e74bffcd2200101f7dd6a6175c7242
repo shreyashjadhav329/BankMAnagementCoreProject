@@ -1,0 +1,5 @@
+package BankManagement.Model;
+
+public class BankAccount {
+
+}

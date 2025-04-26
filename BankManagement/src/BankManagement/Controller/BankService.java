@@ -1,0 +1,48 @@
+package BankManagement.Controller;
+import BankManagement.Model.*;
+import java.util.ArrayList;
+import java.util.List;
+public class BankService {
+
+	
+
+
+	    private List<BankAccount> accounts = new ArrayList<>();
+
+	    public void createAccount(String accountNumber, String holderName, double initialDeposit) {
+	        BankAccount account = new BankAccount(accountNumber, holderName, initialDeposit);
+	        accounts.add(account);
+	    }
+
+	    public List<BankAccount> getAllAccounts() {
+	        return accounts;
+	    }
+
+	    public BankAccount findAccountByNumber(String accountNumber) {
+	        for (BankAccount acc : accounts) {
+	            if (acc.getAccountNumber().equalsIgnoreCase(accountNumber)) {
+	                return acc;
+	            }
+	        }
+	        return null;
+	    }
+
+	    public boolean deposit(String accountNumber, double amount) {
+	        BankAccount acc = findAccountByNumber(accountNumber);
+	        if (acc != null) {
+	            acc.deposit(amount);
+	            return true;
+	        }
+	        return false;
+	    }
+
+	    public boolean withdraw(String accountNumber, double amount) {
+	        BankAccount acc = findAccountByNumber(accountNumber);
+	        if (acc != null) {
+	            return acc.withdraw(amount);
+	        }
+	        return false;
+	    }
+	
+
+}
